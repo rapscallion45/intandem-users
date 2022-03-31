@@ -1,11 +1,12 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import Button from '@mui/material/Button';
+import EditUserDialog from './edit-user-dialog';
 import DeleteUserDialog from './delete-user-dialog';
 import actions from '../redux/actions/actions';
 
@@ -18,7 +19,9 @@ const Img = styled('img')({
 
 const UserItem = function UserItem({ userData }) {
   const dispatch = useDispatch();
+  const { updating, updated } = useSelector((state) => state.users);
   const [open, setOpen] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -28,9 +31,21 @@ const UserItem = function UserItem({ userData }) {
     setOpen(false);
   };
 
+  const handleClickOpenEdit = () => {
+    setOpenEdit(true);
+  };
+
+  const handleCloseEdit = () => {
+    setOpenEdit(false);
+  };
+
   const deleteUser = () => {
     dispatch(actions.deleteUser(userData.id));
   };
+
+  useEffect(() => {
+    if (updated && !updating) setOpenEdit(false);
+  }, [updated, updating]);
 
   return (
     <Paper
@@ -66,7 +81,7 @@ const UserItem = function UserItem({ userData }) {
         <Grid item xs={12}>
           <Grid container spacing={2}>
             <Grid item xs={6}>
-              <Button color="primary" variant="contained" fullWidth>
+              <Button color="primary" variant="contained" onClick={handleClickOpenEdit} fullWidth>
                 Edit User
               </Button>
             </Grid>
@@ -78,6 +93,7 @@ const UserItem = function UserItem({ userData }) {
           </Grid>
         </Grid>
       </Grid>
+      <EditUserDialog userData={userData} open={openEdit} handleClose={handleCloseEdit} />
       <DeleteUserDialog
         userData={userData}
         open={open}

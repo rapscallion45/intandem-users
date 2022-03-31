@@ -38,6 +38,39 @@ const usersReducer = (state = {}, action) => {
         deleteError: action.error,
         deleted: false,
       };
+    case types.EDITUSER_REQUEST:
+      return {
+        ...state,
+        updating: true,
+        updated: false,
+      };
+    case types.EDITUSER_SUCCESS:
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          data: state.users.data.map((item) => {
+            if (item.id === action.id) {
+              return {
+                ...item,
+                first_name: action.userFields.first_name,
+                last_name: action.userFields.last_name,
+                email: action.userFields.email,
+              };
+            }
+            return item;
+          }),
+        },
+        updating: false,
+        updated: true,
+      };
+    case types.EDITUSER_FAILURE:
+      return {
+        ...state,
+        updateError: action.error,
+        updating: false,
+        updated: false,
+      };
     default:
       return state;
   }
