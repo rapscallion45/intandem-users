@@ -50,7 +50,7 @@ const usersReducer = (state = {}, action) => {
         users: {
           ...state.users,
           data: state.users.data.map((item) => {
-            if (item.id === action.id) {
+            if (item.id === action.userId) {
               return {
                 ...item,
                 first_name: action.userFields.first_name,
