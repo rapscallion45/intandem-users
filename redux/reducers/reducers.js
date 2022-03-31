@@ -25,7 +25,7 @@ const usersReducer = (state = {}, action) => {
 
 // COMBINED REDUCERS
 const reducers = {
-  counter: usersReducer,
+  users: usersReducer,
 };
 
 export default combineReducers(reducers);
