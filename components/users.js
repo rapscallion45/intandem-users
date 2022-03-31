@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import UserItem from './user-item';
 import PaginationButtons from './pagination-buttons';
+import userActions from '../redux/actions/actions';
 
 const data = [
   {
@@ -51,10 +53,16 @@ const data = [
 ];
 
 const Users = function Users() {
+  const dispatch = useDispatch();
+  const [currentPage, setCurrentPage] = useState(1);
   const pageChange = (event, page) => {
-    // set page num
-    console.log('update ' + page);
+    setCurrentPage(page);
+    console.log(`update ${page}`);
   };
+
+  useEffect(() => {
+    dispatch(userActions.getUsersByPage(currentPage, 6));
+  }, [currentPage]);
 
   return (
     <Box mb={4}>
