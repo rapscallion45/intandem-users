@@ -58,18 +58,17 @@ const Users = function Users() {
 
   return (
     <Box mb={4}>
-      <Stack spacing={2}>
-        <Typography variant="h4" align="center" mt={5}>
-          Users List
-        </Typography>
-        <Grid container spacing={3}>
-          {data.map((user) => (
-            <Grid key={user.id} item xs={12} sm={4}>
-              <UserItem userData={user} />
-            </Grid>
-          ))}
-        </Grid>
-      </Stack>
+      <Typography variant="h4" align="center" mt={5} mb={3}>
+        Users List
+      </Typography>
+      <Grid container spacing={3}>
+        {data.map((user) => (
+          <Grid key={user.id} item xs={12} sm={4}>
+            <UserItem userData={user} />
+          </Grid>
+        ))}
+      </Grid>
+
       <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
         <PaginationButtons numPages={2} onChange={pageChange} />
       </Box>

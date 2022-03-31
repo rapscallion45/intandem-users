@@ -42,19 +42,19 @@ const UserItem = function UserItem({ userData }) {
                 ID: {userData.id}
               </Typography>
             </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <Grid container spacing={2}>
+            <Grid item xs={6}>
+              <Button color="primary" variant="contained" fullWidth>
+                Edit User
+              </Button>
+            </Grid>
             <Grid item>
-              <Grid container spacing={2}>
-                <Grid item xs={6}>
-                  <Button color="primary" variant="contained">
-                    Edit
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button color="error" variant="contained">
-                    Delete
-                  </Button>
-                </Grid>
-              </Grid>
+              <Button color="error" variant="contained" fullWidth>
+                Delete User
+              </Button>
             </Grid>
           </Grid>
         </Grid>
