@@ -6,11 +6,10 @@ import Link from '@mui/material/Link';
 const Copyright = function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" href="https://www.linkedin.com/in/carlscrivener/">
         Carl Scrivener
-      </Link>{' '}
-      {new Date().getFullYear()}.
+      </Link>
+      {' tested on 31-02-22'}.
     </Typography>
   );
 };

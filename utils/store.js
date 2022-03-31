@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-import reducers from '../reducers/reducers';
+import reducers from '../redux/reducers/reducers';
 
 let currentStore;
 
