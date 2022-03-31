@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
@@ -5,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import Button from '@mui/material/Button';
+import DeleteUserDialog from './delete-user-dialog';
 import actions from '../redux/actions/actions';
 
 const Img = styled('img')({
@@ -16,9 +18,18 @@ const Img = styled('img')({
 
 const UserItem = function UserItem({ userData }) {
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(false);
 
-  const deleteUser = (id) => {
-    dispatch(actions.deleteUser(id));
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const deleteUser = () => {
+    dispatch(actions.deleteUser(userData.id));
   };
 
   return (
@@ -60,18 +71,19 @@ const UserItem = function UserItem({ userData }) {
               </Button>
             </Grid>
             <Grid item>
-              <Button
-                color="error"
-                variant="contained"
-                onClick={() => deleteUser(userData.id)}
-                fullWidth
-              >
+              <Button color="error" variant="contained" onClick={handleClickOpen} fullWidth>
                 Delete User
               </Button>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
+      <DeleteUserDialog
+        userData={userData}
+        open={open}
+        handleClose={handleClose}
+        confirm={deleteUser}
+      />
     </Paper>
   );
 };
