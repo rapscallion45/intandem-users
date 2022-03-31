@@ -7,11 +7,12 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Examples from '../components/examples';
 import Footer from '../components/footer';
 import Logo from '../components/logo';
-import { startClock } from '../actions/actions';
 import Link from '../components/link';
+import Users from '../components/users';
+
+import { startClock } from '../actions/actions';
 
 const Index = function Index() {
   const dispatch = useDispatch();
@@ -42,11 +43,11 @@ const Index = function Index() {
       </Box>
       <Container maxWidth="sm">
         <Box sx={{ my: 4 }}>
-          <Examples />
           <Button variant="contained" component={Link} noLinkStyle href="/show-redux-state">
             Click to see current Redux State
           </Button>
         </Box>
+        <Users />
       </Container>
       <Footer />
     </Box>
