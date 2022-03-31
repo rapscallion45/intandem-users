@@ -48,8 +48,32 @@ function deleteUser(id) {
   };
 }
 
+function editUser(id, fields) {
+  function request() {
+    return { type: types.EDITUSER_REQUEST };
+  }
+  function success(userId, userFields) {
+    return { type: types.EDITUSER_SUCCESS, userId, userFields };
+  }
+  function failure(error) {
+    return { type: types.DELETEUSER_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(request(fields));
+
+    services.editUser(id, fields).then(
+      () => dispatch(success(id, fields)),
+      (error) => {
+        dispatch(failure(error.toString()));
+      }
+    );
+  };
+}
+
 const userActions = {
   getUsersByPage,
   deleteUser,
+  editUser,
 };
 export default userActions;

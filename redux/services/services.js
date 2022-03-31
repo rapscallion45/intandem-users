@@ -35,8 +35,18 @@ function deleteUser(id) {
   return fetch(`https://reqres.in/api/users/${id}`, requestOptions).then(handleResponse);
 }
 
+function editUser(id) {
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  return fetch(`https://reqres.in/api/users/${id}`, requestOptions).then(handleResponse);
+}
+
 const services = {
   getUsersByPage,
   deleteUser,
+  editUser,
 };
 export default services;
