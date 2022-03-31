@@ -18,6 +18,26 @@ const usersReducer = (state = {}, action) => {
         error: action.error,
         loaded: false,
       };
+    case types.DELETEUSER_REQUEST:
+      return {
+        ...state,
+        deleting: true,
+      };
+    case types.DELETEUSER_SUCCESS:
+      return {
+        ...state,
+        users: {
+          ...state.users,
+          data: state.users.data.filter((item) => item.id !== action.id),
+        },
+        deleted: true,
+      };
+    case types.DELETEUSER_FAILURE:
+      return {
+        ...state,
+        deleteError: action.error,
+        deleted: false,
+      };
     default:
       return state;
   }

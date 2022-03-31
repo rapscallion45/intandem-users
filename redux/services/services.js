@@ -14,9 +14,10 @@ function handleResponse(response) {
   });
 }
 
-export function getUsersByPage(page, perPage) {
+function getUsersByPage(page, perPage) {
   const requestOptions = {
     method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
   };
 
   return fetch(
@@ -25,7 +26,17 @@ export function getUsersByPage(page, perPage) {
   ).then(handleResponse);
 }
 
+function deleteUser(id) {
+  const requestOptions = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  return fetch(`https://reqres.in/api/users/${id}`, requestOptions).then(handleResponse);
+}
+
 const services = {
   getUsersByPage,
+  deleteUser,
 };
 export default services;

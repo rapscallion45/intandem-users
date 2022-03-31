@@ -25,7 +25,31 @@ function getUsersByPage(pageNum, perPage) {
   };
 }
 
+function deleteUser(id) {
+  function request() {
+    return { type: types.DELETEUSER_REQUEST };
+  }
+  function success() {
+    return { type: types.DELETEUSER_SUCCESS, id };
+  }
+  function failure(error) {
+    return { type: types.DELETEUSER_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+
+    services.deleteUser(id).then(
+      () => dispatch(success(id)),
+      (error) => {
+        dispatch(failure(error.toString()));
+      }
+    );
+  };
+}
+
 const userActions = {
   getUsersByPage,
+  deleteUser,
 };
 export default userActions;

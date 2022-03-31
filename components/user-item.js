@@ -1,9 +1,11 @@
+import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import Button from '@mui/material/Button';
+import actions from '../redux/actions/actions';
 
 const Img = styled('img')({
   margin: 'auto',
@@ -13,6 +15,12 @@ const Img = styled('img')({
 });
 
 const UserItem = function UserItem({ userData }) {
+  const dispatch = useDispatch();
+
+  const deleteUser = (id) => {
+    dispatch(actions.deleteUser(id));
+  };
+
   return (
     <Paper
       sx={{
@@ -52,7 +60,12 @@ const UserItem = function UserItem({ userData }) {
               </Button>
             </Grid>
             <Grid item>
-              <Button color="error" variant="contained" fullWidth>
+              <Button
+                color="error"
+                variant="contained"
+                onClick={() => deleteUser(userData.id)}
+                fullWidth
+              >
                 Delete User
               </Button>
             </Grid>
