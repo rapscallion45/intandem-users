@@ -1,11 +1,15 @@
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const DeleteUserDialog = function DeleteUserDialog({ userData, open, handleClose, confirm }) {
+  const { deleting } = useSelector((state) => state.users);
+
   return (
     <div>
       <Dialog
@@ -25,8 +29,15 @@ const DeleteUserDialog = function DeleteUserDialog({ userData, open, handleClose
           <Button color="secondary" variant="contained" onClick={handleClose}>
             Cancel
           </Button>
-          <Button color="error" variant="contained" onClick={confirm}>
-            Delete User
+          <Button
+            variant="contained"
+            color="error"
+            onClick={confirm}
+            disabled={deleting}
+            sx={{ minWidth: 150 }}
+          >
+            {!deleting && 'Delete User'}
+            {deleting && <CircularProgress size={25} color="inherit" />}
           </Button>
         </DialogActions>
       </Dialog>
