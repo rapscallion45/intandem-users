@@ -20,10 +20,9 @@ function getUsersByPage(page, perPage) {
     headers: { 'Content-Type': 'application/json' },
   };
 
-  return fetch(
-    `https://reqres.in/api/users?page=${page || 1}&per_page=${perPage}`,
-    requestOptions
-  ).then(handleResponse);
+  return fetch(`/api/users?page=${page || 1}&per_page=${perPage}`, requestOptions).then(
+    handleResponse
+  );
 }
 
 function deleteUser(id) {
@@ -32,16 +31,17 @@ function deleteUser(id) {
     headers: { 'Content-Type': 'application/json' },
   };
 
-  return fetch(`https://reqres.in/api/users/${id}`, requestOptions).then(handleResponse);
+  return fetch(`/api/users/${id}`, requestOptions).then(handleResponse);
 }
 
-function editUser(id) {
+function editUser(id, fields) {
   const requestOptions = {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(fields),
   };
 
-  return fetch(`https://reqres.in/api/users/${id}`, requestOptions).then(handleResponse);
+  return fetch(`/api/users/${id}`, requestOptions).then(handleResponse);
 }
 
 const services = {

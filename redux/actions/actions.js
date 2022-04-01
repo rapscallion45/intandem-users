@@ -56,7 +56,7 @@ function editUser(id, fields) {
     return { type: types.EDITUSER_SUCCESS, userId, userFields };
   }
   function failure(error) {
-    return { type: types.DELETEUSER_FAILURE, error };
+    return { type: types.EDITUSER_FAILURE, error };
   }
 
   return (dispatch) => {

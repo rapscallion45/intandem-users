@@ -22,6 +22,7 @@ const usersReducer = (state = {}, action) => {
       return {
         ...state,
         deleting: true,
+        deleted: false,
       };
     case types.DELETEUSER_SUCCESS:
       return {
@@ -30,12 +31,14 @@ const usersReducer = (state = {}, action) => {
           ...state.users,
           data: state.users.data.filter((item) => item.id !== action.id),
         },
+        deleting: false,
         deleted: true,
       };
     case types.DELETEUSER_FAILURE:
       return {
         ...state,
         deleteError: action.error,
+        deleting: false,
         deleted: false,
       };
     case types.EDITUSER_REQUEST:
