@@ -8,6 +8,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import Button from '@mui/material/Button';
 import EditUserDialog from './edit-user-dialog';
 import DeleteUserDialog from './delete-user-dialog';
+import Link from './link';
 import actions from '../redux/actions/actions';
 
 const Img = styled('img')({
@@ -59,7 +60,11 @@ const UserItem = function UserItem({ userData }) {
     >
       <Grid container spacing={2}>
         <Grid item>
-          <ButtonBase sx={{ width: 128, height: 128 }}>
+          <ButtonBase
+            component={Link}
+            href={`/user/${userData.id}`}
+            sx={{ width: 128, height: 128 }}
+          >
             <Img alt="user" src={userData.avatar} />
           </ButtonBase>
         </Grid>

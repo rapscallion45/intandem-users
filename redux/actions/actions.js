@@ -25,6 +25,30 @@ function getUsersByPage(pageNum, perPage) {
   };
 }
 
+/* Get user profile data from endpoint by ID */
+function getUserById(id) {
+  function request() {
+    return { type: types.GETUSERBYID_REQUEST };
+  }
+  function success(usersData) {
+    return { type: types.GETUSERBYID_SUCCESS, usersData };
+  }
+  function failure(error) {
+    return { type: types.GETUSERBYID_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(request());
+
+    services.getUserById(id).then(
+      (usersData) => dispatch(success(usersData)),
+      (error) => {
+        dispatch(failure(error.toString()));
+      }
+    );
+  };
+}
+
 function deleteUser(id) {
   function request() {
     return { type: types.DELETEUSER_REQUEST };
@@ -73,6 +97,7 @@ function editUser(id, fields) {
 
 const userActions = {
   getUsersByPage,
+  getUserById,
   deleteUser,
   editUser,
 };

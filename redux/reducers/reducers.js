@@ -79,9 +79,32 @@ const usersReducer = (state = {}, action) => {
   }
 };
 
+// USER PROFILE REDUCER
+const userProfileReducer = (state = {}, action) => {
+  switch (action.type) {
+    case types.GETUSERBYID_REQUEST:
+      return {
+        loading: true,
+      };
+    case types.GETUSERBYID_SUCCESS:
+      return {
+        user: action.usersData,
+        loaded: true,
+      };
+    case types.GETUSERBYID_FAILURE:
+      return {
+        error: action.error,
+        loaded: false,
+      };
+    default:
+      return state;
+  }
+};
+
 // COMBINED REDUCERS
 const reducers = {
   users: usersReducer,
+  userProfile: userProfileReducer,
 };
 
 export default combineReducers(reducers);

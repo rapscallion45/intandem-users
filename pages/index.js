@@ -1,42 +1,30 @@
-import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
-import Footer from '../components/footer';
-import Logo from '../components/logo';
-import Link from '../components/link';
+import HomeIcon from '@mui/icons-material/Home';
+import Page from '../components/page';
 import Users from '../components/users';
+import Layout from '../layouts/Layout/layout';
 
 const Index = function Index() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh',
-      }}
-    >
-      <CssBaseline />
-      <Box sx={{ flexGrow: 1, maxHeight: 80 }}>
-        <AppBar position="sticky">
-          <Toolbar variant="dense">
-            <Link href="/" sx={{ mr: 5 }}>
-              <Logo />
-            </Link>
-            <Typography variant="h6" color="inherit" component="div">
-              Intandem Users
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Box>
+    <Page title="Intandem | Users List">
       <Container maxWidth="lg">
+        <Box mt={5} mb={4}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Typography color="text.primary">
+              <HomeIcon sx={{ mr: 0.5, pt: '5px' }} fontSize="inherit" />
+              Users List
+            </Typography>
+          </Breadcrumbs>
+        </Box>
         <Users />
       </Container>
-      <Footer />
-    </Box>
+    </Page>
   );
 };
+
+Index.Layout = Layout;
 
 export default Index;
