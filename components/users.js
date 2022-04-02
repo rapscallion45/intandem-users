@@ -23,10 +23,7 @@ const Users = function Users() {
   }, [currentPage]);
 
   return (
-    <Box mb={4}>
-      <Typography variant="h4" align="center" mt={5} mb={3}>
-        Users List
-      </Typography>
+    <Box mt={5} mb={4}>
       <Grid container spacing={3}>
         {users.loading && (
           <Grid item xs={12}>

@@ -25,6 +25,15 @@ function getUsersByPage(page, perPage) {
   );
 }
 
+function getUserById(id) {
+  const requestOptions = {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  };
+
+  return fetch(`/api/users/${id}`, requestOptions).then(handleResponse);
+}
+
 function deleteUser(id) {
   const requestOptions = {
     method: 'DELETE',
@@ -46,6 +55,7 @@ function editUser(id, fields) {
 
 const services = {
   getUsersByPage,
+  getUserById,
   deleteUser,
   editUser,
 };
