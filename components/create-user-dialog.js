@@ -5,11 +5,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import ProfileForm from './profile-form';
 import actions from '../redux/actions/actions';
 
-const EditUserDialog = function EditUserDialog({ userData, open, handleClose }) {
+const CreateUserDialog = function CreateUserDialog({ open, handleClose }) {
   const dispatch = useDispatch();
 
   const handleSave = (userId, fields) => {
-    dispatch(actions.editUser(userId, fields));
+    dispatch(actions.createUser(fields));
   };
 
   return (
@@ -20,18 +20,13 @@ const EditUserDialog = function EditUserDialog({ userData, open, handleClose }) 
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Edit User</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Create New User</DialogTitle>
         <DialogContent>
-          <ProfileForm
-            userData={userData}
-            handleCancel={handleClose}
-            handleSave={handleSave}
-            showCancel
-          />
+          <ProfileForm handleCancel={handleClose} handleSave={handleSave} showCancel />
         </DialogContent>
       </Dialog>
     </div>
   );
 };
 
-export default EditUserDialog;
+export default CreateUserDialog;

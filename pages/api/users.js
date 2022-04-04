@@ -1,4 +1,4 @@
-import { getUsersByPage } from '../../lib/api';
+import { getUsersByPage, createUser } from '../../lib/api';
 
 export default async function handler(req, res) {
   /* get req params */
@@ -10,6 +10,23 @@ export default async function handler(req, res) {
       /* call api */
       try {
         const response = await getUsersByPage(query.page, query.perPage);
+        const data = await response.json();
+
+        /* send back server response */
+        if (data) {
+          return res.status(200).json(data);
+        }
+        return res.status(400).json({ message: 'Request failed.' });
+      } catch (error) {
+        return res.status(501).json({
+          message: 'Oops, something went wrong with the request.',
+          error,
+        });
+      }
+    case 'POST':
+      /* call api */
+      try {
+        const response = await createUser(query.fields);
         const data = await response.json();
 
         /* send back server response */

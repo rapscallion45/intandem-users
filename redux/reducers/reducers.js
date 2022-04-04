@@ -41,6 +41,25 @@ const usersReducer = (state = {}, action) => {
         deleting: false,
         deleted: false,
       };
+    case types.CREATEUSER_REQUEST:
+      return {
+        ...state,
+        creating: true,
+        created: false,
+      };
+    case types.CREATEUSER_SUCCESS:
+      return {
+        ...state,
+        creating: false,
+        created: true,
+      };
+    case types.CREATEUSER_FAILURE:
+      return {
+        ...state,
+        createError: action.error,
+        creating: false,
+        created: false,
+      };
     case types.EDITUSER_REQUEST:
       return {
         ...state,

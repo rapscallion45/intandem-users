@@ -1,14 +1,12 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
-import actions from '../redux/actions/actions';
 
-const ProfileForm = function ProfileForm({ userData, handleCancel, showCancel }) {
-  const dispatch = useDispatch();
+const ProfileForm = function ProfileForm({ userData, handleCancel, handleSave, showCancel }) {
   const { updating } = useSelector((state) => state.users);
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Email is invalid').required('Email is required'),
@@ -18,13 +16,13 @@ const ProfileForm = function ProfileForm({ userData, handleCancel, showCancel })
 
   const formik = useFormik({
     initialValues: {
-      email: userData.email || '',
-      first_name: userData.first_name || '',
-      last_name: userData.last_name || '',
+      email: userData?.email || '',
+      first_name: userData?.first_name || '',
+      last_name: userData?.last_name || '',
     },
     validationSchema,
     onSubmit: (fields) => {
-      dispatch(actions.editUser(userData.id, fields));
+      handleSave(userData?.id, fields);
     },
   });
 
