@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
@@ -10,17 +10,41 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import WarningIcon from '@mui/icons-material/Warning';
 import Skeleton from '@mui/material/Skeleton';
+import Button from '@mui/material/Button';
+import DeleteUserDialog from './delete-user-dialog';
+import ProfileForm from './profile-form';
 import userActions from '../redux/actions/actions';
 
 const UserProfile = function UserProfile() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { deleted, deleting } = useSelector((state) => state.users);
   const { user, loading, loaded, error } = useSelector((state) => state.userProfile);
   const { id } = router.query;
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const handleDeleteOpen = () => {
+    setDeleteOpen(true);
+  };
+
+  const handleDeleteClose = () => {
+    setDeleteOpen(false);
+  };
 
   useEffect(() => {
     dispatch(userActions.getUserById(id));
   }, []);
+
+  const deleteUser = () => {
+    dispatch(userActions.deleteUser(user.data.id));
+  };
+
+  useEffect(() => {
+    if (deleted && !deleting) {
+      setDeleteOpen(false);
+      router.push('/');
+    }
+  }, [deleted, deleting]);
 
   return (
     <Box>
@@ -73,11 +97,27 @@ const UserProfile = function UserProfile() {
                     padding: '30px',
                   }}
                 >
-                  <Typography variant="h4" component="h4" sx={{ textAlign: 'center' }}>
-                    {user.data.first_name} {user.data.last_name}
-                  </Typography>
-                  <Box sx={{ marginTop: '20px', textAlign: 'center' }}>{user.data.email}</Box>
+                  <ProfileForm userData={user.data} />
+                  <Box mt={2}>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      fullWidth
+                      onClick={handleDeleteOpen}
+                      disabled={deleting}
+                      sx={{ minWidth: 150 }}
+                    >
+                      {!deleting && 'Delete User'}
+                      {deleting && <CircularProgress size={25} color="inherit" />}
+                    </Button>
+                  </Box>
                 </Box>
+                <DeleteUserDialog
+                  userData={user?.data}
+                  open={deleteOpen}
+                  handleClose={handleDeleteClose}
+                  confirm={deleteUser}
+                />
               </>
             )}
           </Card>
