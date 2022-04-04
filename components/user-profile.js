@@ -10,18 +10,24 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import WarningIcon from '@mui/icons-material/Warning';
 import Skeleton from '@mui/material/Skeleton';
+import Button from '@mui/material/Button';
 import ProfileForm from './profile-form';
 import userActions from '../redux/actions/actions';
 
 const UserProfile = function UserProfile() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const { deleting } = useSelector((state) => state.users);
   const { user, loading, loaded, error } = useSelector((state) => state.userProfile);
   const { id } = router.query;
 
   useEffect(() => {
     dispatch(userActions.getUserById(id));
   }, []);
+
+  const deleteUser = () => {
+    dispatch(userActions.deleteUser(user.data.id));
+  };
 
   return (
     <Box>
@@ -74,7 +80,20 @@ const UserProfile = function UserProfile() {
                     padding: '30px',
                   }}
                 >
-                  <ProfileForm userData={user.data} showDelete />
+                  <ProfileForm userData={user.data} />
+                  <Box mt={2}>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      fullWidth
+                      onClick={deleteUser}
+                      disabled={deleting}
+                      sx={{ minWidth: 150 }}
+                    >
+                      {!deleting && 'Delete User'}
+                      {deleting && <CircularProgress size={25} color="inherit" />}
+                    </Button>
+                  </Box>
                 </Box>
               </>
             )}

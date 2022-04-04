@@ -78,20 +78,20 @@ const ProfileForm = function ProfileForm({ userData, handleCancel, showCancel })
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <Grid container justifyContent="end" spacing={2} sx={{ marginTop: '5px' }}>
-          {showCancel && (
-            <Grid item xs={12} sm={6} lg={4} xl={3}>
-              <Button fullWidth variant="contained" onClick={handleCancel}>
-                Cancel
-              </Button>
-            </Grid>
-          )}
-          <Grid item xs={12} sm={6} lg={4} xl={3}>
+        <Grid container justifyContent="end" spacing={2} mt={1}>
+          <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="success" disabled={updating}>
               {!updating && 'Save'}
               {updating && <CircularProgress size={25} color="inherit" />}
             </Button>
           </Grid>
+          {showCancel && (
+            <Grid item xs={12}>
+              <Button fullWidth variant="contained" onClick={handleCancel}>
+                Cancel
+              </Button>
+            </Grid>
+          )}
         </Grid>
       </Grid>
     </form>
