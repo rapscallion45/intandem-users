@@ -57,9 +57,15 @@ const Users = function Users() {
           ))}
       </Grid>
 
-      <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-        <PaginationButtons numPages={2} onChange={pageChange} />
-      </Box>
+      {users.loaded && (
+        <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <PaginationButtons
+            currentPage={users.users.page}
+            numPages={users.users.total_pages}
+            onChange={pageChange}
+          />
+        </Box>
+      )}
     </Box>
   );
 };

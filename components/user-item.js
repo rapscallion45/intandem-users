@@ -68,9 +68,16 @@ const UserItem = function UserItem({ userData }) {
         <Grid item xs={12} sm container>
           <Grid item xs container direction="column" spacing={2}>
             <Grid item xs>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                {userData.first_name} {userData.last_name}
-              </Typography>
+              <Link href={`/user/${userData.id}`} sx={{ color: 'black' }}>
+                <Typography
+                  gutterBottom
+                  variant="subtitle1"
+                  component="div"
+                  sx={{ fontWeight: 'bold' }}
+                >
+                  {userData.first_name} {userData.last_name}
+                </Typography>
+              </Link>
               <Typography variant="body2" gutterBottom>
                 Email: {userData.email}
               </Typography>

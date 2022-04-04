@@ -53,10 +53,21 @@ function editUser(id, fields) {
   return fetch(`/api/users/${id}`, requestOptions).then(handleResponse);
 }
 
+function createUser(fields) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(fields),
+  };
+
+  return fetch(`/api/users`, requestOptions).then(handleResponse);
+}
+
 const services = {
   getUsersByPage,
   getUserById,
   deleteUser,
   editUser,
+  createUser,
 };
 export default services;

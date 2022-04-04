@@ -2,7 +2,7 @@
 
 This is an example app demonstrating user data fetching from a rest API endpoint. User creation, modification and deletion functionality is included, and simulated server responses are handled.
 
-The app is built on Next.js, with Redux for state management. The app has been styled using MUI v5. The user data is collected from the open source rest API [reqres.in](https://reqres.in).
+The app is built on Next.js, employing Redux for state management. The app has been styled using MUI v5. The user data is collected from the free, open source rest API [reqres.in](https://reqres.in).
 
 ## Project Link
 

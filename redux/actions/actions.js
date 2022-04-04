@@ -95,10 +95,34 @@ function editUser(id, fields) {
   };
 }
 
+function createUser(fields) {
+  function request() {
+    return { type: types.CREATEUSER_REQUEST };
+  }
+  function success(userData) {
+    return { type: types.CREATEUSER_SUCCESS, userData };
+  }
+  function failure(error) {
+    return { type: types.CREATEUSER_FAILURE, error };
+  }
+
+  return (dispatch) => {
+    dispatch(request(fields));
+
+    services.createUser(fields).then(
+      (userData) => dispatch(success(userData)),
+      (error) => {
+        dispatch(failure(error.toString()));
+      }
+    );
+  };
+}
+
 const userActions = {
   getUsersByPage,
   getUserById,
   deleteUser,
   editUser,
+  createUser,
 };
 export default userActions;
