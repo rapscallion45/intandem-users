@@ -10,6 +10,7 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import WarningIcon from '@mui/icons-material/Warning';
 import Skeleton from '@mui/material/Skeleton';
+import ProfileForm from './profile-form';
 import userActions from '../redux/actions/actions';
 
 const UserProfile = function UserProfile() {
@@ -73,10 +74,7 @@ const UserProfile = function UserProfile() {
                     padding: '30px',
                   }}
                 >
-                  <Typography variant="h4" component="h4" sx={{ textAlign: 'center' }}>
-                    {user.data.first_name} {user.data.last_name}
-                  </Typography>
-                  <Box sx={{ marginTop: '20px', textAlign: 'center' }}>{user.data.email}</Box>
+                  <ProfileForm userData={user.data} showDelete />
                 </Box>
               </>
             )}
