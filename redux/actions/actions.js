@@ -1,4 +1,4 @@
-import * as types from '../constants/types';
+import * as types from '../types/types';
 import services from '../services/services';
 
 /* Get users data from endpoint by page */

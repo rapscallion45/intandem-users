@@ -1,12 +1,12 @@
 # Intandem Users example
 
-This is an example app demonstarting user data fetching from a rest API endpoint. User creation, updating and deletion functionality is included.
+This is an example app demonstrating user data fetching from a rest API endpoint. User creation, modification and deletion functionality is included, and simulated server responses are handled.
 
-The app is built on React.js and Next.js, with Redux for state management. The app has been styled using MUI v5. The user data is collected from the open source rest API [reqres.in](https://reqres.in)
+The app is built on Next.js, with Redux for state management. The app has been styled using MUI v5. The user data is collected from the open source rest API [reqres.in](https://reqres.in).
 
 ## Project Link
 
-The app is live at: [https://intandem-users.vercel.app/](https://intandem-users.vercel.app/)
+This demonstration app is live at: [https://intandem-users.vercel.app/](https://intandem-users.vercel.app/)
 
 ## Project Status
 

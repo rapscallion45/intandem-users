@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import * as types from '../constants/types';
+import * as types from '../types/types';
 
 // USERS REDUCER
 const usersReducer = (state = {}, action) => {
