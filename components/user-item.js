@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ButtonBase from '@mui/material/ButtonBase';
 import Button from '@mui/material/Button';
+import Avatar from '@mui/material/Avatar';
 import EditUserDialog from './edit-user-dialog';
 import DeleteUserDialog from './delete-user-dialog';
 import Link from './link';
 import actions from '../redux/actions/actions';
-
-const Img = styled('img')({
-  margin: 'auto',
-  display: 'block',
-  maxWidth: '100%',
-  maxHeight: '100%',
-});
 
 const UserItem = function UserItem({ userData }) {
   const dispatch = useDispatch();
@@ -65,7 +58,11 @@ const UserItem = function UserItem({ userData }) {
             href={`/user/${userData.id}`}
             sx={{ width: 128, height: 128 }}
           >
-            <Img alt="user" src={userData.avatar} />
+            <Avatar
+              alt={userData.last_name}
+              src={userData.avatar}
+              sx={{ width: '100px', height: '100px' }}
+            />
           </ButtonBase>
         </Grid>
         <Grid item xs={12} sm container>
@@ -84,7 +81,7 @@ const UserItem = function UserItem({ userData }) {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <Grid container spacing={2}>
+          <Grid container spacing={2} sx={{ justifyContent: 'center' }}>
             <Grid item xs={6}>
               <Button color="primary" variant="contained" onClick={handleClickOpenEdit} fullWidth>
                 Edit User
