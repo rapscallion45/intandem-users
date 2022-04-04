@@ -6,7 +6,7 @@ The app is built on React.js and Next.js, with Redux for state management. The a
 
 ## Project Link
 
-The app is live at: [https://intandem-users.vercel.com/](https://intandem-users.vercel.com/)
+The app is live at: [https://intandem-users.vercel.app/](https://intandem-users.vercel.app/)
 
 ## Project Status
 
