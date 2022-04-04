@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import Box from '@mui/material/Box';
@@ -11,15 +11,25 @@ import Divider from '@mui/material/Divider';
 import WarningIcon from '@mui/icons-material/Warning';
 import Skeleton from '@mui/material/Skeleton';
 import Button from '@mui/material/Button';
+import DeleteUserDialog from './delete-user-dialog';
 import ProfileForm from './profile-form';
 import userActions from '../redux/actions/actions';
 
 const UserProfile = function UserProfile() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { deleting } = useSelector((state) => state.users);
+  const { deleted, deleting } = useSelector((state) => state.users);
   const { user, loading, loaded, error } = useSelector((state) => state.userProfile);
   const { id } = router.query;
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const handleDeleteOpen = () => {
+    setDeleteOpen(true);
+  };
+
+  const handleDeleteClose = () => {
+    setDeleteOpen(false);
+  };
 
   useEffect(() => {
     dispatch(userActions.getUserById(id));
@@ -28,6 +38,13 @@ const UserProfile = function UserProfile() {
   const deleteUser = () => {
     dispatch(userActions.deleteUser(user.data.id));
   };
+
+  useEffect(() => {
+    if (deleted && !deleting) {
+      setDeleteOpen(false);
+      router.push('/');
+    }
+  }, [deleted, deleting]);
 
   return (
     <Box>
@@ -86,7 +103,7 @@ const UserProfile = function UserProfile() {
                       variant="contained"
                       color="error"
                       fullWidth
-                      onClick={deleteUser}
+                      onClick={handleDeleteOpen}
                       disabled={deleting}
                       sx={{ minWidth: 150 }}
                     >
@@ -95,6 +112,12 @@ const UserProfile = function UserProfile() {
                     </Button>
                   </Box>
                 </Box>
+                <DeleteUserDialog
+                  userData={user?.data}
+                  open={deleteOpen}
+                  handleClose={handleDeleteClose}
+                  confirm={deleteUser}
+                />
               </>
             )}
           </Card>
