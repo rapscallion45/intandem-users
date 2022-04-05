@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -32,6 +33,18 @@ const EditUserDialog = function EditUserDialog({ userData, open, handleClose }) 
       </Dialog>
     </div>
   );
+};
+
+EditUserDialog.propTypes = {
+  userData: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+  }),
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default EditUserDialog;

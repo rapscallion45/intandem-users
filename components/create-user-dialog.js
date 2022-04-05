@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -27,6 +28,11 @@ const CreateUserDialog = function CreateUserDialog({ open, handleClose }) {
       </Dialog>
     </div>
   );
+};
+
+CreateUserDialog.propTypes = {
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default CreateUserDialog;
