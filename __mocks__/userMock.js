@@ -1,11 +1,9 @@
-const accountMock = {
-  displayName: 'Jaydon Frankie',
-  firstName: 'Jaydon',
-  lastName: 'Frankie',
-  username: 'jaydon.frankie',
-  email: 'jaydon.frankie@test.com',
-  photoURL: '/static/mock-images/avatars/avatar_default.jpg',
-  password: 'testtest',
+const userMock = {
+  id: 7,
+  email: 'michael.lawson@reqres.in',
+  first_name: 'Michael',
+  last_name: 'Lawson',
+  avatar: 'https://reqres.in/img/faces/7-image.jpg',
 };
 
-export default accountMock;
+export default userMock;

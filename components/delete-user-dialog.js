@@ -37,7 +37,9 @@ const DeleteUserDialog = function DeleteUserDialog({ userData, open, handleClose
             sx={{ minWidth: 150 }}
           >
             {!deleting && 'Delete User'}
-            {deleting && <CircularProgress size={25} color="inherit" />}
+            {deleting && (
+              <CircularProgress data-testid="delete-spinner" size={25} color="inherit" />
+            )}
           </Button>
         </DialogActions>
       </Dialog>
