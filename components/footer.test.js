@@ -27,4 +27,18 @@ describe('Footer', () => {
       expect(wrapper.getByText(date)).toBeInTheDocument();
     });
   });
+
+  describe('Linkedin link', () => {
+    it('Should render link to Linkedin profile', () => {
+      /* Arrange */
+      const linkText = 'Carl Scrivener';
+      const linkUrl = 'https://www.linkedin.com/in/carlscrivener/';
+
+      /* Act */
+      const wrapper = render(<Footer />);
+
+      /* Assert */
+      expect(wrapper.getByText(linkText).closest('a')).toHaveAttribute('href', linkUrl);
+    });
+  });
 });
