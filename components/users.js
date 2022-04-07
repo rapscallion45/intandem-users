@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import Pagination from '@mui/material/Pagination';
 import WarningIcon from '@mui/icons-material/Warning';
 import UserItem from './user-item';
-import PaginationButtons from './pagination-buttons';
 import userActions from '../redux/actions/actions';
 
 const Users = function Users() {
@@ -59,10 +59,11 @@ const Users = function Users() {
 
       {users.loaded && (
         <Box mt={5} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <PaginationButtons
-            currentPage={users.users.page}
-            numPages={users.users.total_pages}
+          <Pagination
+            page={users.users.page}
             onChange={pageChange}
+            count={users.users.total_pages}
+            size="large"
           />
         </Box>
       )}
