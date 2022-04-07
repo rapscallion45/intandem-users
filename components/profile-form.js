@@ -1,4 +1,3 @@
-import { useSelector } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import Button from '@mui/material/Button';
@@ -6,8 +5,13 @@ import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import Grid from '@mui/material/Grid';
 
-const ProfileForm = function ProfileForm({ userData, handleCancel, handleSave, showCancel }) {
-  const { updating } = useSelector((state) => state.users);
+const ProfileForm = function ProfileForm({
+  userData,
+  handleCancel,
+  handleSave,
+  saving,
+  showCancel,
+}) {
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Email is invalid').required('Email is required'),
     first_name: Yup.string().required('First Name is required'),
@@ -78,9 +82,9 @@ const ProfileForm = function ProfileForm({ userData, handleCancel, handleSave, s
       <Grid item xs={12}>
         <Grid container justifyContent="end" spacing={2} mt={1}>
           <Grid item xs={12}>
-            <Button type="submit" fullWidth variant="contained" color="success" disabled={updating}>
-              {!updating && 'Save'}
-              {updating && <CircularProgress size={25} color="inherit" />}
+            <Button type="submit" fullWidth variant="contained" color="success" disabled={saving}>
+              {!saving && 'Save'}
+              {saving && <CircularProgress data-testid="save-spinner" size={25} color="inherit" />}
             </Button>
           </Grid>
           {showCancel && (

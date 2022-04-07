@@ -25,7 +25,17 @@ exports[`Edit User Dialog Renders correctly enzyme 1`] = `
   }
 >
   <EditUserDialog
+    handleClose={[MockFunction]}
     open={true}
+    userData={
+      Object {
+        "avatar": "https://reqres.in/img/faces/7-image.jpg",
+        "email": "michael.lawson@reqres.in",
+        "first_name": "Michael",
+        "id": 7,
+        "last_name": "Lawson",
+      }
+    }
   />
 </ContextProvider>
 `;

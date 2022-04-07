@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
@@ -8,6 +8,7 @@ import actions from '../redux/actions/actions';
 
 const EditUserDialog = function EditUserDialog({ userData, open, handleClose }) {
   const dispatch = useDispatch();
+  const { updating } = useSelector((state) => state.users);
 
   const handleSave = (userId, fields) => {
     dispatch(actions.editUser(userId, fields));
@@ -27,6 +28,7 @@ const EditUserDialog = function EditUserDialog({ userData, open, handleClose }) 
             userData={userData}
             handleCancel={handleClose}
             handleSave={handleSave}
+            saving={updating}
             showCancel
           />
         </DialogContent>

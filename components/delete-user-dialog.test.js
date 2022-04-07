@@ -16,11 +16,18 @@ describe('Delete User Dialog', () => {
     /* Arrange */
     const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
     const dialogOpen = true;
+    const mockConfirm = jest.fn();
+    const mockClose = jest.fn();
 
     /* Act */
     const wrapper = shallow(
       <Provider store={testStore}>
-        <DeleteUserDialog open={dialogOpen} userData={userMock} />
+        <DeleteUserDialog
+          open={dialogOpen}
+          userData={userMock}
+          handleClose={mockClose}
+          confirm={mockConfirm}
+        />
       </Provider>
     );
 
@@ -34,11 +41,18 @@ describe('Delete User Dialog', () => {
       const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
       const titleText = 'Are you sure you want to delete';
       const dialogOpen = true;
+      const mockConfirm = jest.fn();
+      const mockClose = jest.fn();
 
       /* Act */
       const wrapper = render(
         <Provider store={testStore}>
-          <DeleteUserDialog open={dialogOpen} userData={userMock} />
+          <DeleteUserDialog
+            open={dialogOpen}
+            userData={userMock}
+            handleClose={mockClose}
+            confirm={mockConfirm}
+          />
         </Provider>
       );
 
@@ -53,11 +67,18 @@ describe('Delete User Dialog', () => {
       const userLastName = userMock.last_name;
       const titleText = `Are you sure you want to delete ${userFirstName} ${userLastName}?`;
       const dialogOpen = true;
+      const mockConfirm = jest.fn();
+      const mockClose = jest.fn();
 
       /* Act */
       const wrapper = render(
         <Provider store={testStore}>
-          <DeleteUserDialog open={dialogOpen} userData={userMock} />
+          <DeleteUserDialog
+            open={dialogOpen}
+            userData={userMock}
+            handleClose={mockClose}
+            confirm={mockConfirm}
+          />
         </Provider>
       );
 
@@ -72,11 +93,18 @@ describe('Delete User Dialog', () => {
       const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
       const titleText = 'Are you sure you want to delete';
       const dialogOpen = false;
+      const mockConfirm = jest.fn();
+      const mockClose = jest.fn();
 
       /* Act */
       const wrapper = render(
         <Provider store={testStore}>
-          <DeleteUserDialog open={dialogOpen} userData={userMock} />
+          <DeleteUserDialog
+            open={dialogOpen}
+            userData={userMock}
+            handleClose={mockClose}
+            confirm={mockConfirm}
+          />
         </Provider>
       );
 
@@ -90,11 +118,17 @@ describe('Delete User Dialog', () => {
       const dialogOpen = true;
       const deleteBtnText = 'Delete User';
       const mockConfirm = jest.fn();
+      const mockClose = jest.fn();
 
       /* Act */
       const wrapper = render(
         <Provider store={testStore}>
-          <DeleteUserDialog open={dialogOpen} userData={userMock} confirm={mockConfirm} />
+          <DeleteUserDialog
+            open={dialogOpen}
+            userData={userMock}
+            handleClose={mockClose}
+            confirm={mockConfirm}
+          />
         </Provider>
       );
       fireEvent.click(screen.getByText(deleteBtnText));
@@ -109,19 +143,25 @@ describe('Delete User Dialog', () => {
       const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
       const dialogOpen = true;
       const cancelBtnText = 'Cancel';
-      const mockCancel = jest.fn();
+      const mockClose = jest.fn();
+      const mockConfirm = jest.fn();
 
       /* Act */
       const wrapper = render(
         <Provider store={testStore}>
-          <DeleteUserDialog open={dialogOpen} userData={userMock} handleClose={mockCancel} />
+          <DeleteUserDialog
+            open={dialogOpen}
+            userData={userMock}
+            handleClose={mockClose}
+            confirm={mockConfirm}
+          />
         </Provider>
       );
       fireEvent.click(screen.getByText(cancelBtnText));
 
       /* Assert */
       expect(wrapper.queryByText(cancelBtnText)).toBeInTheDocument();
-      expect(mockCancel).toHaveBeenCalledTimes(1);
+      expect(mockClose).toHaveBeenCalledTimes(1);
     });
 
     it('Should render spinner in place of delete confirm button when delete API is called', () => {
@@ -133,11 +173,18 @@ describe('Delete User Dialog', () => {
       );
       const dialogOpen = true;
       const deleteBtnText = 'Delete User';
+      const mockClose = jest.fn();
+      const mockConfirm = jest.fn();
 
       /* Act */
       const wrapper = render(
         <Provider store={testStore}>
-          <DeleteUserDialog open={dialogOpen} userData={userMock} />
+          <DeleteUserDialog
+            open={dialogOpen}
+            userData={userMock}
+            handleClose={mockClose}
+            confirm={mockConfirm}
+          />
         </Provider>
       );
 

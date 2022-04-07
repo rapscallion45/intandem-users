@@ -25,6 +25,7 @@ exports[`Create User Dialog Renders correctly enzyme 1`] = `
   }
 >
   <CreateUserDialog
+    handleClose={[MockFunction]}
     open={true}
   />
 </ContextProvider>

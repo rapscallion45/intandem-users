@@ -25,6 +25,8 @@ exports[`Delete User Dialog Renders correctly enzyme 1`] = `
   }
 >
   <DeleteUserDialog
+    confirm={[MockFunction]}
+    handleClose={[MockFunction]}
     open={true}
     userData={
       Object {
