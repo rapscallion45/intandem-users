@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Page Renders correctly enzyme 1`] = `
+<ForwardRef(Box)>
+  <title />
+  <div>
+    <p>
+      Child 1
+    </p>
+    <p>
+      child 2
+    </p>
+  </div>
+</ForwardRef(Box)>
+`;
