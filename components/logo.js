@@ -14,7 +14,7 @@ const BoxStyle = styled(Box)(({ theme }) => ({
 }));
 
 const Logo = function Logo({ sx }) {
-  return <BoxStyle component="img" src="/static/logo.webp" sx={{ ...sx }} />;
+  return <BoxStyle alt="logo-image" component="img" src="/static/logo.webp" sx={{ ...sx }} />;
 };
 
 Logo.propTypes = {
