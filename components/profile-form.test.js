@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { render, fireEvent, act, waitFor } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import toJson from 'enzyme-to-json';
 import userMock from '../__mocks__/userMock';
@@ -102,13 +102,16 @@ describe('Profile Form', () => {
           showCancel={mockShowCancel}
         />
       );
-      act(() => {
-        fireEvent.change(wrapper.getByLabelText('Last Name'), { target: { value: '' } });
+      fireEvent.change(wrapper.getByLabelText('Last Name'), { target: { value: '' } });
+      await waitFor(() => {
+        expect(wrapper.getByDisplayValue('')).toBeInTheDocument();
       });
       fireEvent.click(wrapper.getByText(saveBtnText));
 
       /* Assert */
-      expect(wrapper.queryByText(saveBtnText)).toBeInTheDocument();
+      await waitFor(() => {
+        expect(wrapper.queryByText(saveBtnText)).toBeInTheDocument();
+      });
       expect(mockSave).toHaveBeenCalledTimes(0);
     });
 
