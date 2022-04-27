@@ -15,7 +15,7 @@ const serverMockHandlers = [
   rest.get('/api/users/:id', async (req, res, ctx) => {
     const { id } = req.params;
     if (!id) res(ctx.status(400), ctx.json({ message: 'No user ID provided.' }));
-    return res(ctx.status(200), ctx.json(userMock));
+    return res(ctx.status(200), ctx.json({ data: userMock }));
   }),
   /* Test/mock delete user by ID route */
   rest.delete('/api/users/:id', async (req, res, ctx) => {
