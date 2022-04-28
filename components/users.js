@@ -24,7 +24,7 @@ const Users = function Users() {
 
   return (
     <Box mt={5} mb={4}>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} role="list" aria-label="user list">
         {users.loading && (
           <Grid item xs={12}>
             <Box mt={5} mb={5}>
@@ -51,7 +51,7 @@ const Users = function Users() {
         )}
         {users.loaded &&
           users.users.data.map((user) => (
-            <Grid key={user.id} item xs={12} sm={4}>
+            <Grid key={user.id} item xs={12} sm={4} role="listitem">
               <UserItem userData={user} />
             </Grid>
           ))}
