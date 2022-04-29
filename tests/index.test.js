@@ -7,7 +7,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import router from 'next/router';
 import rootReducer from '../redux/reducers/reducers';
-import Index from './index';
+import Index from '../pages/index';
 
 const middleware = [thunkMiddleware];
 
