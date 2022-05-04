@@ -13,10 +13,10 @@ export default async function handler(req, res) {
         const data = await response.json();
 
         /* send back server response */
-        if (data) {
+        if (response.status === 200) {
           return res.status(200).json(data);
         }
-        return res.status(400).json({ message: 'User request failed.' });
+        return res.status(400).json(data);
       } catch (error) {
         return res.status(501).json({
           message: 'Oops, something went wrong with the request.',
@@ -32,7 +32,8 @@ export default async function handler(req, res) {
         if (response.status === 200) {
           return res.status(200).json({ message: 'User updated.' });
         }
-        return res.status(400).json({ message: 'Failed to edit user.' });
+        const data = await response.json();
+        return res.status(400).json(data);
       } catch (error) {
         return res.status(501).json({
           message: 'Oops, something went wrong with the request.',
@@ -48,7 +49,8 @@ export default async function handler(req, res) {
         if (response.status === 204) {
           return res.status(200).json({ message: 'User deleted.' });
         }
-        return res.status(400).json({ message: 'Failed to delete user.' });
+        const data = await response.json();
+        return res.status(400).json(data);
       } catch (error) {
         return res.status(501).json({
           message: 'Oops, something went wrong with the request.',
