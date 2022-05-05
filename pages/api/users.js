@@ -13,10 +13,10 @@ export default async function handler(req, res) {
         const data = await response.json();
 
         /* send back server response */
-        if (data) {
+        if (response.status === 200) {
           return res.status(200).json(data);
         }
-        return res.status(400).json({ message: 'Request failed.' });
+        return res.status(400).json(data);
       } catch (error) {
         return res.status(501).json({
           message: 'Oops, something went wrong with the request.',
@@ -26,14 +26,18 @@ export default async function handler(req, res) {
     case 'POST':
       /* call api */
       try {
-        const response = await createUser(query.fields);
+        const response = await createUser({
+          first_name: query.first_name,
+          last_name: query.last_name,
+          email: query.email,
+        });
         const data = await response.json();
 
         /* send back server response */
-        if (data) {
+        if (response.status === 200) {
           return res.status(200).json(data);
         }
-        return res.status(400).json({ message: 'Request failed.' });
+        return res.status(400).json(data);
       } catch (error) {
         return res.status(501).json({
           message: 'Oops, something went wrong with the request.',

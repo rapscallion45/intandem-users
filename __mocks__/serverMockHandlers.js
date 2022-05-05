@@ -41,11 +41,23 @@ const serverMockHandlers = [
     return res(ctx.status(200));
   }),
 
+  /* ****************** */
+  /* EXTERNAL API MOCKS */
+  /* ****************** */
+
   /* Test/mock get users route */
   rest.get(`${API_URL}/users`, async (req, res, ctx) =>
-    /* No need to test auth cookie, assume auth cookie present */
     res(ctx.status(200), ctx.json(usersDataMock))
   ),
+  /* Test/mock get users route */
+  rest.post(`${API_URL}/users`, async (req, res, ctx) => {
+    /* eslint-disable camelcase */
+    const { first_name, last_name, email } = req.body;
+    if (!first_name || !last_name || !email) {
+      return res(ctx.status(400), ctx.json({ message: 'Missing param.' }));
+    }
+    return res(ctx.status(200), ctx.json({ id: '811', createdAt: '2022-05-05T12:48:36.842Z' }));
+  }),
   /* Test/mock get user by ID route (remote) */
   rest.get(`${API_URL}/users/:id`, async (req, res, ctx) => {
     const { id } = req.params;
