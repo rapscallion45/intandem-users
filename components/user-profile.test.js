@@ -303,5 +303,61 @@ describe('User Profile', () => {
         expect(wrapper.getByText(deleteUserTitleText, { exact: false })).toBeInTheDocument();
       });
     });
+
+    it('Should render cancel Delete User button which should close delete dialog', async () => {
+      /* Arrange */
+      const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
+      const deleteBtnText = 'Delete User';
+      const cancelBtnText = 'Cancel';
+      const deleteUserTitleText = 'Are you sure you want to delete';
+      const useRouter = jest.spyOn(router, 'useRouter');
+      useRouter.mockImplementation(() => ({
+        route: '/user',
+        pathname: '',
+        query: { id: 7 },
+        asPath: '',
+        push: jest.fn(),
+        events: {
+          on: jest.fn(),
+          off: jest.fn(),
+        },
+        beforePopState: jest.fn(() => null),
+        prefetch: jest.fn(() => null),
+      }));
+
+      /* Act */
+      const wrapper = render(
+        <Provider store={testStore}>
+          <UserProfile />
+        </Provider>
+      );
+
+      /* Assert */
+      await waitFor(() => {
+        expect(wrapper.queryByText(deleteBtnText)).toBeInTheDocument();
+      });
+      expect(wrapper.queryByText(cancelBtnText)).toBeNull();
+      expect(wrapper.queryByText(deleteUserTitleText)).toBeNull();
+
+      /* Act */
+      fireEvent.click(wrapper.getByText(deleteBtnText));
+
+      /* Assert */
+      await waitFor(() => {
+        /* await delete user dialog to open */
+        expect(wrapper.getByText(deleteUserTitleText, { exact: false })).toBeInTheDocument();
+      });
+      expect(wrapper.queryByText(cancelBtnText)).toBeInTheDocument();
+
+      /* Act */
+      fireEvent.click(wrapper.getByText(cancelBtnText));
+
+      /* Assert */
+      await waitFor(() => {
+        /* await delete user dialog to close indicating successful cancel */
+        expect(wrapper.queryByText(cancelBtnText)).toBeNull();
+      });
+      expect(wrapper.queryByText(deleteUserTitleText)).toBeNull();
+    });
   });
 });
