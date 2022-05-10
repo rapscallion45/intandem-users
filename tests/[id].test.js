@@ -6,8 +6,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import router from 'next/router';
-import rootReducer from '../../redux/reducers/reducers';
-import User from './[id]';
+import rootReducer from '../redux/reducers/reducers';
+import User from '../pages/user/[id]';
 
 const middleware = [thunkMiddleware];
 
