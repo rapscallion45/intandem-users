@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link Options renders external link correctly 1`] = `
+<ForwardRef(Link)
+  className=""
+  href="http://test.com"
+/>
+`;
+
+exports[`Link Options renders external link with no style correctly 1`] = `
+<Styled(a)
+  className=""
+  href="http://test.com"
+/>
+`;
+
+exports[`Link Options renders link with no style correctly 1`] = `
+<ForwardRef
+  className=""
+  to="/"
+/>
+`;
+
+exports[`Link Renders correctly enzyme 1`] = `
+<ForwardRef(Link)
+  className=""
+  component={
+    Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "propTypes": Object {
+        "href": [Function],
+        "linkAs": [Function],
+        "locale": [Function],
+        "passHref": [Function],
+        "prefetch": [Function],
+        "replace": [Function],
+        "scroll": [Function],
+        "shallow": [Function],
+        "to": [Function],
+      },
+      "render": [Function],
+    }
+  }
+  to="/"
+/>
+`;

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Layout Renders correctly enzyme 1`] = `
+<ForwardRef(Box)
+  sx={
+    Object {
+      "display": "flex",
+      "flexDirection": "column",
+      "minHeight": "100vh",
+    }
+  }
+>
+  <CssBaseline />
+  <ForwardRef(Box)
+    sx={
+      Object {
+        "flexGrow": 1,
+        "maxHeight": 80,
+      }
+    }
+  >
+    <ForwardRef(AppBar)
+      position="sticky"
+    >
+      <ForwardRef(Toolbar)
+        variant="dense"
+      >
+        <ForwardRef
+          href="/"
+          sx={
+            Object {
+              "mr": 5,
+            }
+          }
+        >
+          <Logo />
+        </ForwardRef>
+        <ForwardRef(Typography)
+          color="inherit"
+          component="div"
+          variant="h6"
+        >
+          Intandem Users
+        </ForwardRef(Typography)>
+      </ForwardRef(Toolbar)>
+    </ForwardRef(AppBar)>
+  </ForwardRef(Box)>
+  <TestChild />
+  <Footer />
+</ForwardRef(Box)>
+`;

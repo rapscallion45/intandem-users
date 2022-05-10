@@ -1,0 +1,99 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile Form Renders correctly enzyme 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <ForwardRef(Grid)
+    container={true}
+    spacing={2}
+  >
+    <ForwardRef(Grid)
+      item={true}
+      xs={12}
+    >
+      <ForwardRef(TextField)
+        fullWidth={true}
+        id="first_name"
+        label="First Name"
+        margin="normal"
+        name="first_name"
+        onChange={[Function]}
+        type="first_name"
+        value="Michael"
+        variant="outlined"
+      />
+    </ForwardRef(Grid)>
+    <ForwardRef(Grid)
+      item={true}
+      xs={12}
+    >
+      <ForwardRef(TextField)
+        fullWidth={true}
+        id="last_name"
+        label="Last Name"
+        margin="normal"
+        name="last_name"
+        onChange={[Function]}
+        type="last_name"
+        value="Lawson"
+        variant="outlined"
+      />
+    </ForwardRef(Grid)>
+    <ForwardRef(Grid)
+      item={true}
+      xs={12}
+    >
+      <ForwardRef(TextField)
+        fullWidth={true}
+        id="email"
+        label="Email"
+        margin="normal"
+        name="email"
+        onChange={[Function]}
+        type="email"
+        value="michael.lawson@reqres.in"
+        variant="outlined"
+      />
+    </ForwardRef(Grid)>
+  </ForwardRef(Grid)>
+  <ForwardRef(Grid)
+    item={true}
+    xs={12}
+  >
+    <ForwardRef(Grid)
+      container={true}
+      justifyContent="end"
+      mt={1}
+      spacing={2}
+    >
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Button)
+          color="success"
+          disabled={false}
+          fullWidth={true}
+          type="submit"
+          variant="contained"
+        >
+          Save
+        </ForwardRef(Button)>
+      </ForwardRef(Grid)>
+      <ForwardRef(Grid)
+        item={true}
+        xs={12}
+      >
+        <ForwardRef(Button)
+          fullWidth={true}
+          onClick={[MockFunction]}
+          variant="contained"
+        >
+          Cancel
+        </ForwardRef(Button)>
+      </ForwardRef(Grid)>
+    </ForwardRef(Grid)>
+  </ForwardRef(Grid)>
+</form>
+`;

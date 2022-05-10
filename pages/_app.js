@@ -11,17 +11,15 @@ import createEmotionCache from '../utils/createEmotionCache';
 const clientSideEmotionCache = createEmotionCache();
 
 const App = function App({ Component, emotionCache = clientSideEmotionCache, pageProps }) {
-  const store = useStore(pageProps.initialReduxState);
-  const PageLayout = Component.Layout || Layout;
+  const store = useStore(pageProps?.initialReduxState);
+  const PageLayout = Component?.Layout || Layout;
 
   return (
     <Provider store={store}>
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <PageLayout>
-            <Component {...pageProps} />
-          </PageLayout>
+          <PageLayout>{Component && <Component {...pageProps} />}</PageLayout>
         </ThemeProvider>
       </CacheProvider>
     </Provider>

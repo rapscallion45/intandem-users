@@ -5,6 +5,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 import HomeIcon from '@mui/icons-material/Home';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import Page from '../components/page';
@@ -52,7 +53,10 @@ const Index = function Index() {
             endIcon={<AddCircleIcon />}
             sx={{ marginLeft: 'auto' }}
           >
-            Create User
+            {!creating && 'Create User'}
+            {creating && (
+              <CircularProgress size={25} color="inherit" data-testid="create-user-spinner" />
+            )}
           </Button>
         </Box>
         <Users />

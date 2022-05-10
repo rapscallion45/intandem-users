@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Edit User Dialog Renders correctly enzyme 1`] = `
+<ContextProvider
+  value={
+    Object {
+      "store": Object {
+        "@@observable": [Function],
+        "dispatch": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+      "subscription": Object {
+        "addNestedSub": [Function],
+        "getListeners": [Function],
+        "handleChangeWrapper": [Function],
+        "isSubscribed": [Function],
+        "notifyNestedSubs": [Function],
+        "onStateChange": [Function],
+        "trySubscribe": [Function],
+        "tryUnsubscribe": [Function],
+      },
+    }
+  }
+>
+  <EditUserDialog
+    handleClose={[MockFunction]}
+    open={true}
+    userData={
+      Object {
+        "avatar": "https://reqres.in/img/faces/7-image.jpg",
+        "email": "michael.lawson@reqres.in",
+        "first_name": "Michael",
+        "id": 7,
+        "last_name": "Lawson",
+      }
+    }
+  />
+</ContextProvider>
+`;

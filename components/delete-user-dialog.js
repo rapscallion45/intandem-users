@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -35,14 +36,30 @@ const DeleteUserDialog = function DeleteUserDialog({ userData, open, handleClose
             onClick={confirm}
             disabled={deleting}
             sx={{ minWidth: 150 }}
+            data-testid="delete-confirm-btn"
           >
             {!deleting && 'Delete User'}
-            {deleting && <CircularProgress size={25} color="inherit" />}
+            {deleting && (
+              <CircularProgress data-testid="delete-spinner" size={25} color="inherit" />
+            )}
           </Button>
         </DialogActions>
       </Dialog>
     </div>
   );
+};
+
+DeleteUserDialog.propTypes = {
+  userData: PropTypes.shape({
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    avatar: PropTypes.string.isRequired,
+  }),
+  open: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  confirm: PropTypes.func.isRequired,
 };
 
 export default DeleteUserDialog;

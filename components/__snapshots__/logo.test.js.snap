@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo Renders correctly enzyme 1`] = `
+<Styled(ForwardRef(Box))
+  alt="logo-image"
+  component="img"
+  src="/static/logo.webp"
+  sx={Object {}}
+/>
+`;
