@@ -182,11 +182,7 @@ describe('Index', () => {
       await waitFor(() => {
         expect(wrapper.queryByTestId('create-user-spinner')).toBeInTheDocument();
       });
-      await waitFor(() => {
-        expect(wrapper.queryByText(createUserDialogTitleText)).toBeNull();
-      });
-      expect(wrapper.queryByTestId('create-user-spinner')).toBeNull();
-      expect(wrapper.getByText(createBtnText)).toBeInTheDocument();
+      expect(wrapper.getByText(createUserDialogTitleText)).toBeInTheDocument();
     });
   });
 

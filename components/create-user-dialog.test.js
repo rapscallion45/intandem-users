@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from '../redux/reducers/reducers';
+import services from '../redux/services/services';
 import CreateUserDialog from './create-user-dialog';
 
 const middleware = [thunkMiddleware];
@@ -146,6 +147,35 @@ describe('Create User Dialog', () => {
       fireEvent.change(wrapper.getByLabelText('Email'), { target: { value: 'test@t.com' } });
       fireEvent.change(wrapper.getByLabelText('First Name'), { target: { value: 'Test' } });
       fireEvent.change(wrapper.getByLabelText('Last Name'), { target: { value: '' } });
+      fireEvent.click(wrapper.getByText(saveBtnText));
+
+      /* Assert */
+      await waitFor(() => {
+        expect(wrapper.queryByText(saveBtnText)).toBeInTheDocument();
+      });
+      expect(wrapper.queryByTestId('save-spinner')).toBeNull();
+    });
+
+    it('Should remain open if create user API fails', async () => {
+      /* Arrange */
+      const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
+      const dialogOpen = true;
+      const saveBtnText = 'Save';
+      const mockClose = jest.fn();
+      /* create mock of failed create user API call for just this one test */
+      jest.mock('../redux/services/services');
+      const createUser = jest.spyOn(services, 'createUser');
+      createUser.mockImplementationOnce(() => Promise.reject(new Error()));
+
+      /* Act */
+      const wrapper = render(
+        <Provider store={testStore}>
+          <CreateUserDialog open={dialogOpen} handleClose={mockClose} />
+        </Provider>
+      );
+      fireEvent.change(wrapper.getByLabelText('Email'), { target: { value: 'test@t.com' } });
+      fireEvent.change(wrapper.getByLabelText('First Name'), { target: { value: 'Test' } });
+      fireEvent.change(wrapper.getByLabelText('Last Name'), { target: { value: 'Name' } });
       fireEvent.click(wrapper.getByText(saveBtnText));
 
       /* Assert */

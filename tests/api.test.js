@@ -24,7 +24,7 @@ describe('API Routes', () => {
     it('returns success message upon new user creation', async () => {
       const { req, res } = createMocks({
         method: 'POST',
-        query: {
+        body: {
           first_name: 'John',
           last_name: 'Smith',
           email: 'john.smith@test.com',

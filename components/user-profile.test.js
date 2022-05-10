@@ -181,6 +181,45 @@ describe('User Profile', () => {
       expect(wrapper.queryByDisplayValue(userMock.last_name)).toBeNull();
       expect(wrapper.queryByDisplayValue(userMock.email)).toBeNull();
     });
+
+    it('Should render error message if user ID not found', async () => {
+      /* Arrange */
+      const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
+      const errorText = 'Failed to load user profile.';
+      const useRouter = jest.spyOn(router, 'useRouter');
+      useRouter.mockImplementation(() => ({
+        route: '/user',
+        pathname: '',
+        query: { id: 8 },
+        asPath: '',
+        push: jest.fn(),
+        events: {
+          on: jest.fn(),
+          off: jest.fn(),
+        },
+        beforePopState: jest.fn(() => null),
+        prefetch: jest.fn(() => null),
+      }));
+
+      /* Act */
+      const wrapper = render(
+        <Provider store={testStore}>
+          <UserProfile />
+        </Provider>
+      );
+
+      /* Assert */
+      await waitFor(() => {
+        expect(wrapper.getByText(errorText)).toBeInTheDocument();
+      });
+      expect(wrapper.queryByAltText(userMock.last_name)).toBeNull();
+      expect(wrapper.queryByLabelText(`First Name`)).toBeNull();
+      expect(wrapper.queryByLabelText(`Last Name`)).toBeNull();
+      expect(wrapper.queryByLabelText(`Email`)).toBeNull();
+      expect(wrapper.queryByDisplayValue(userMock.first_name)).toBeNull();
+      expect(wrapper.queryByDisplayValue(userMock.last_name)).toBeNull();
+      expect(wrapper.queryByDisplayValue(userMock.email)).toBeNull();
+    });
   });
 
   describe('Operations', () => {

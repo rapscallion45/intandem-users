@@ -1,12 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import userMock from '../__mocks__/userMock';
 import rootReducer from '../redux/reducers/reducers';
+import services from '../redux/services/services';
 import DeleteUserDialog from './delete-user-dialog';
 
 const middleware = [thunkMiddleware];
@@ -191,6 +192,37 @@ describe('Delete User Dialog', () => {
       /* Assert */
       expect(wrapper.queryByText(deleteBtnText)).toBeNull();
       expect(wrapper.queryByTestId('delete-spinner')).toBeInTheDocument();
+    });
+
+    it('Should remain open if delete user API fails', async () => {
+      /* Arrange */
+      const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
+      const dialogOpen = true;
+      const mockClose = jest.fn();
+      const mockConfirm = jest.fn();
+      /* create mock of failed delete user API call for just this one test */
+      jest.mock('../redux/services/services');
+      const deleteUser = jest.spyOn(services, 'deleteUser');
+      deleteUser.mockImplementationOnce(() => Promise.reject(new Error()));
+
+      /* Act */
+      const wrapper = render(
+        <Provider store={testStore}>
+          <DeleteUserDialog
+            open={dialogOpen}
+            userData={userMock}
+            handleClose={mockClose}
+            confirm={mockConfirm}
+          />
+        </Provider>
+      );
+      fireEvent.click(wrapper.getByTestId('delete-confirm-btn'));
+
+      /* Assert */
+      await waitFor(() => {
+        expect(wrapper.getByTestId('delete-confirm-btn')).toBeInTheDocument();
+      });
+      expect(wrapper.queryByTestId('delete-spinner')).toBeNull();
     });
   });
 });

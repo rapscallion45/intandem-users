@@ -2,7 +2,7 @@ import { getUsersByPage, createUser } from '../../lib/api';
 
 export default async function handler(req, res) {
   /* get req params */
-  const { query, method } = req;
+  const { query, body, method } = req;
 
   /* determine which request type this is */
   switch (method) {
@@ -27,14 +27,14 @@ export default async function handler(req, res) {
       /* call api */
       try {
         const response = await createUser({
-          first_name: query.first_name,
-          last_name: query.last_name,
-          email: query.email,
+          first_name: body.first_name,
+          last_name: body.last_name,
+          email: body.email,
         });
         const data = await response.json();
 
         /* send back server response */
-        if (response.status === 200) {
+        if (response.status === 201) {
           return res.status(200).json(data);
         }
         return res.status(400).json(data);

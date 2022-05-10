@@ -29,7 +29,6 @@ module.exports = {
     '<rootDir>/.eslintrc.js',
     '<rootDir>/jest.config.js',
     '<rootDir>/next.config.js',
-    '<rootDir>/pages/_app.js',
     '<rootDir>/pages/_document.js',
   ],
   globals: {

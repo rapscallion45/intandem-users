@@ -29,7 +29,7 @@ const usersReducer = (state = {}, action) => {
         ...state,
         users: {
           ...state.users,
-          data: state.users.data.filter((item) => item.id !== action.id),
+          data: state.users?.data.filter((item) => item.id !== action.id),
         },
         deleting: false,
         deleted: true,
@@ -71,7 +71,7 @@ const usersReducer = (state = {}, action) => {
         ...state,
         users: {
           ...state.users,
-          data: state.users.data.map((item) => {
+          data: state.users?.data.map((item) => {
             if (item.id === action.userId) {
               return {
                 ...item,

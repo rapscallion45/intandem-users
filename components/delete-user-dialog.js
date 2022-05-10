@@ -36,6 +36,7 @@ const DeleteUserDialog = function DeleteUserDialog({ userData, open, handleClose
             onClick={confirm}
             disabled={deleting}
             sx={{ minWidth: 150 }}
+            data-testid="delete-confirm-btn"
           >
             {!deleting && 'Delete User'}
             {deleting && (

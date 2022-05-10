@@ -106,7 +106,7 @@ describe('Edit User Dialog', () => {
       expect(mockClose).toHaveBeenCalledTimes(1);
     });
 
-    it('Should render spinner in place of save button when create API is called', async () => {
+    it('Should render spinner in place of save button when edit API is called', async () => {
       /* Arrange */
       const testStore = createStore(rootReducer, {}, applyMiddleware(...middleware));
       const dialogOpen = true;
